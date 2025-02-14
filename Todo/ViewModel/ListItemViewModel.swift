@@ -34,7 +34,6 @@ class ListItemViewModel: ObservableObject {
         }
     }
     
-    //deleteOnSwipe
     func deleteOnSwipeItems(at offsets: IndexSet, isCompletedSection: Bool) {
         let sectionItems = isCompletedSection ? items.filter { $0.done } : items.filter { !$0.done }
         
@@ -45,7 +44,6 @@ class ListItemViewModel: ObservableObject {
     }
 
     
-    //SimpleDelete
     func deleteItem(toDelete: ItemModel) {
         if let index = items.firstIndex(where: { $0.id == toDelete.id }) {
             items.remove(at: index)
