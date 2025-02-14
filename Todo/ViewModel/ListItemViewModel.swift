@@ -28,9 +28,9 @@ class ListItemViewModel: ObservableObject {
         items.append(item)
     }
     
-    func reverseDone(_for: ItemModel) {
-        if let i = items.firstIndex(where: {$0.id == _for.id}) {
-            items[i] = ItemModel(image: _for.image, title: _for.title, desc: _for.desc, date: _for.date, done: !_for.done)
+    func reverseDone(for model: ItemModel) {
+        if let i = items.firstIndex(where: {$0.id == model.id}) {
+            items[i] = ItemModel(image: model.image, title: model.title, desc: model.desc, date: model.date, done: !model.done)
         }
     }
     

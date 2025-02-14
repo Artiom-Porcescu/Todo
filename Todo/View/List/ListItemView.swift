@@ -38,7 +38,7 @@ struct ListItemView: View {
             Image(systemName: item.done ? "checkmark.circle" : "circle")
                 .onTapGesture {
                     withAnimation(.linear) {
-                        listItemViewModel.reverseDone(_for: item)
+                        listItemViewModel.reverseDone(for: item)
                     }
                 }
                 .font(.title)

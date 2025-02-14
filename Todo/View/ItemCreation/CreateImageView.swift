@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct CreationImageView: View {
+struct CreateImageView: View { //change name
     @State private var selectedItem: PhotosPickerItem? = nil
     @Binding var selectedImage: UIImage?
     

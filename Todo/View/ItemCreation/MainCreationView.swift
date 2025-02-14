@@ -30,7 +30,7 @@ struct MainCreationView: View {
     
     var body: some View {
         VStack {
-            CreationImageView(selectedImage: $selectedImage)
+            CreateImageView(selectedImage: $selectedImage)
             VStack {
                 TextField("Заголовок", text: $title, axis: .horizontal)
                     .padding()
