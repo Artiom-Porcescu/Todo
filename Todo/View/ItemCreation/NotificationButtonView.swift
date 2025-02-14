@@ -12,10 +12,12 @@ struct NotificationButtonView: View {
     var title: String = ""
     var color: Color = .white
     var background: Color = .blue
+    var action: () -> Void
+    
     
     var body: some View {
         Button {
-            
+            action()
         } label: {
             Text(title)
                 .bold()
@@ -30,6 +32,6 @@ struct NotificationButtonView: View {
     }
 }
 
-#Preview {
-    NotificationButtonView()
-}
+//#Preview {
+//    NotificationButtonView(action: () -> Void)
+//}

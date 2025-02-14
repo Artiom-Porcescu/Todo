@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ListItemImageView: View {
+    
+    var selectedImage: UIImage?
+    
     var body: some View {
-        Image("grad")
-            .resizable()
-            .clipShape(Circle())
-            .frame(width: 70, height: 70)
+        if let selectedImage {
+            Image(uiImage: selectedImage)
+                .resizable()
+                .clipShape(Circle())
+                .frame(width: 70, height: 70)
+        }
     }
 }
 
-#Preview {
-    ListItemImageView()
-}
+//#Preview {
+//    ListItemImageView()
+//}

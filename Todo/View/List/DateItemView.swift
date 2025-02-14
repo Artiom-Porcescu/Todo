@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct DateItemView: View {
+    
+    @State var date: Date? = nil
+    
     var body: some View {
         HStack {
             Image(systemName: "bell.fill")
-            Text("10.02.2025")
+            if let date {
+                Text(date.formatted(.dateTime.day().month(.twoDigits).year().hour().minute()))
+            }
         }
         .font(.caption)
         .foregroundStyle(.secondary)
     }
 }
 
-#Preview {
-    DateItemView()
-}
+//#Preview {
+//    DateItemView()
+//}

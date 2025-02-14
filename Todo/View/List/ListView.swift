@@ -9,39 +9,63 @@ import SwiftUI
 
 struct ListView: View {
     
-    @State var items: [ItemModel] = [
-        ItemModel(title: "Buy milk", desc: "1 liter of milk"),
-        ItemModel(title: "Go to the gym", desc: "Leg day workout"),
-        ItemModel(title: "Read a book", desc: "Read 20 pages of Swift Programming"),
-        ItemModel(title: "Meeting", desc: "Team sync at 3 PM"),
-        ItemModel(title: "Grocery shopping", desc: "Buy eggs, bread, and fruits")
-    ]
-
+    @EnvironmentObject var listViewModel: ListItemViewModel
     
     var body: some View {
         List {
-            //undone tasks
-            Section {
-                ForEach(items) { item in
-                    ListItemView()
-                }
-            } header: {
-                Text("Не завершенные")
-            }
+            let completedItems = listViewModel.items.filter { $0.done }
+            let pendingItems = listViewModel.items.filter { !$0.done }
             
-            //completed, put an if if there isnt any
-            Section {
-                Text("Hi")
-            } header: {
-                Text("Завершенные")
+            if !pendingItems.isEmpty {
+                Section {
+                    ForEach(pendingItems) { item in
+                        ListItemView(item: item)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets())
+                            .background(
+                                NavigationLink("", destination: MainCreationView(item: item))
+                                        .opacity(0)
+                                )
+                    }
+                    .onDelete { indexSet in
+                        listViewModel.deleteOnSwipeItems(at: indexSet)
+                    }
+                } header: {
+                    Text("Не завершенные")
+                        .foregroundStyle(.secondary)
+                        .padding(.leading, 10)
+                }
+            }
+
+            if !completedItems.isEmpty {
+                Section {
+                    ForEach(completedItems) { item in
+                        ListItemView(item: item)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets())
+                    }
+                    .onDelete { indexSet in
+                        listViewModel.deleteOnSwipeItems(at: indexSet)
+                    }
+                } header: {
+                    Text("Завершенные")
+                        .foregroundStyle(.secondary)
+                        .padding(.leading, 10)
+                }
             }
         }
-        .listStyle(PlainListStyle())
+        .listStyle(.plain)
+        
+
         
         
     }
+    
 }
 
-#Preview {
-    ListView()
-}
+//#Preview {
+//    NavigationView {
+//        ListView()
+//    }
+//    .environmentObject(ListItemViewModel())
+//}

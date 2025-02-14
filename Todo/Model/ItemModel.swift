@@ -10,8 +10,9 @@ import SwiftUI
 
 struct ItemModel: Identifiable {
     var id = UUID()
-    let image: Image? = nil
+    let image: UIImage?
     let title: String
     let desc: String?
-    let date: Date? = nil
+    let date: Date?
+    let done: Bool
 }

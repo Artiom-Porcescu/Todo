@@ -9,39 +9,40 @@ import SwiftUI
 
 struct ListItemView: View {
     
-    @State var done = false
-    @State var item: ItemModel = ItemModel(title: "title", desc: "dsf")
-    
+    @EnvironmentObject var listItemViewModel: ListItemViewModel
+    var item: ItemModel
     
     var body: some View {
         
         HStack(alignment: .top) {
-            if !done {
-                ListItemImageView()
+            
+            if !item.done {
+                ListItemImageView(selectedImage: item.image)
             }
             VStack(alignment: .leading, spacing: 5) {
-                Text("Buy milk")
-                    .foregroundColor(done ? .secondary : .black)
+                Text(item.title)
+                    .foregroundColor(item.done ? .secondary : .black)
                     .font(.title2)
                     .bold()
-                    .strikethrough(done, color: .secondary)
-                Text("Grease 20% and some more products")
+                    .strikethrough(item.done, color: .secondary)
+                Text(item.desc ?? "")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                    .strikethrough(done, color: .secondary)
+                    .strikethrough(item.done, color: .secondary)
                 if item.date != nil {
-                    DateItemView()
+                    DateItemView(date: item.date)
                 }
             }
             .padding(.leading)
             Spacer()
-            Image(systemName: done ? "checkmark.circle" : "circle")
+            Image(systemName: item.done ? "checkmark.circle" : "circle")
                 .onTapGesture {
-                    withAnimation(.bouncy(duration: 0.5)) {
-                        done.toggle()
+                    withAnimation(.linear) {
+                        listItemViewModel.reverseDone(_for: item)
                     }
                 }
                 .font(.title)
+            
         }
         .padding()
         .background(.gray.opacity(0.15))
@@ -51,6 +52,9 @@ struct ListItemView: View {
     }
 }
 
-#Preview {
-    ListItemView()
-}
+//#Preview {
+//    NavigationView {
+//        ListItemView()
+//    }
+//    .environmentObject(ListItemViewModel())
+//}
