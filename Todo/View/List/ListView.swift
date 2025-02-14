@@ -28,7 +28,7 @@ struct ListView: View {
                                 )
                     }
                     .onDelete { indexSet in
-                        listViewModel.deleteOnSwipeItems(at: indexSet)
+                        listViewModel.deleteOnSwipeItems(at: indexSet, isCompletedSection: false)
                     }
                 } header: {
                     Text("Не завершенные")
@@ -45,7 +45,7 @@ struct ListView: View {
                             .listRowInsets(EdgeInsets())
                     }
                     .onDelete { indexSet in
-                        listViewModel.deleteOnSwipeItems(at: indexSet)
+                        listViewModel.deleteOnSwipeItems(at: indexSet, isCompletedSection: true)
                     }
                 } header: {
                     Text("Завершенные")

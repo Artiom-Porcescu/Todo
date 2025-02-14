@@ -137,7 +137,6 @@ struct MainCreationView: View {
                 }
             }
             
-            
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     if let item {
