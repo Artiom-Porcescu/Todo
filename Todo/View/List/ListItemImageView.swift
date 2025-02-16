@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct ListItemImageView: View {
-    
-    var selectedImage: UIImage?
+    var selectedImageData: Data?
     
     var body: some View {
-        if let selectedImage {
-            Image(uiImage: selectedImage)
+        if let data = selectedImageData, let uiImage = UIImage(data: data) {
+            Image(uiImage: uiImage)
                 .resizable()
                 .clipShape(Circle())
                 .frame(width: 70, height: 70)

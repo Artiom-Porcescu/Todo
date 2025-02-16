@@ -17,7 +17,7 @@ struct ListItemView: View {
         HStack(alignment: .top) {
             
             if !item.done {
-                ListItemImageView(selectedImage: item.image)
+                ListItemImageView(selectedImageData: item.image)
             }
             VStack(alignment: .leading, spacing: 5) {
                 Text(item.title)
@@ -29,8 +29,8 @@ struct ListItemView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .strikethrough(item.done, color: .secondary)
-                if item.date != nil {
-                    DateItemView(date: item.date)
+                if let date = item.date {
+                    DateItemView(date: date)
                 }
             }
             .padding(.leading)

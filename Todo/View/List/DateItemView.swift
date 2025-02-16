@@ -9,13 +9,21 @@ import SwiftUI
 
 struct DateItemView: View {
     
-    @State var date: Date? = nil
+    let date: Date?
+    @EnvironmentObject var listItemViewModel: ListItemViewModel
     
     var body: some View {
         HStack {
             Image(systemName: "bell.fill")
             if let date {
-                Text(date.formatted(.dateTime.day().month(.twoDigits).year().hour().minute()))
+                Text(date.formatted(.dateTime
+                    .day()
+                    .month(.twoDigits)
+                    .year()
+                    .hour()
+                    .minute()
+                    )
+                )
             }
         }
         .font(.caption)

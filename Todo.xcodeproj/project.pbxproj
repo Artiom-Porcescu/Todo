@@ -10,9 +10,22 @@
 		618CB71A2D53780F003EBC64 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6101DCF42D62823C00ACE796 /* Exceptions for "Todo" folder in "Todo" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 618CB7192D53780F003EBC64 /* Todo */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		618CB71C2D53780F003EBC64 /* Todo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6101DCF42D62823C00ACE796 /* Exceptions for "Todo" folder in "Todo" target */,
+			);
 			path = Todo;
 			sourceTree = "<group>";
 		};
@@ -255,6 +268,10 @@
 				DEVELOPMENT_TEAM = PWD28R24HG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Todo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Мы используем камеру для добавления фотографий к задачам";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Мы используем галерею для выбора фото для задач";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -284,6 +301,10 @@
 				DEVELOPMENT_TEAM = PWD28R24HG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Todo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Мы используем камеру для добавления фотографий к задачам";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Мы используем галерею для выбора фото для задач";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
