@@ -10,7 +10,6 @@ import SwiftUI
 struct DateItemView: View {
     
     let date: Date?
-    @EnvironmentObject var listItemViewModel: ListItemViewModel
     
     var body: some View {
         HStack {

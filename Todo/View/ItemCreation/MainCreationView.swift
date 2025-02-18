@@ -60,15 +60,17 @@ struct MainCreationView: View {
                         if dateSelected || item?.date != nil {
                             DatePicker(
                                 "",
-                                selection: selectedDate != nil ? .constant(selectedDate!) : .constant(item?.date ?? Date()),
+                                selection: Binding(
+                                    get: { selectedDate ?? item?.date ?? Date() },
+                                    set: { newDate in
+                                        selectedDate = newDate
+                                    }
+                                ),
                                 in: dateClosedRange,
                                 displayedComponents: [.date, .hourAndMinute]
                             )
                             .datePickerStyle(.compact)
                         }
-
-
-                        
                     }
                     .padding()
                     .foregroundStyle(.secondary)
