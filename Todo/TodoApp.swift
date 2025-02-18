@@ -9,9 +9,19 @@ import SwiftUI
 
 @main
 struct TodoApp: App {
+    
+    @StateObject var listViewModel: ListItemViewModel = ListItemViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                WelcomeView()
+            }
+            .environmentObject(listViewModel)
+            .onAppear {
+                NotificationManager.shared.requestPermission()
+            }
+            .colorScheme(.light)
         }
     }
 }
