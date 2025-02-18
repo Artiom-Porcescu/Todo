@@ -23,9 +23,12 @@ struct ListView: View {
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets())
                             .background(
-                                NavigationLink("", destination: MainCreationView(item: item))
+                                NavigationLink("",
+                                               destination: MainCreationView(item: item)
+                                              )
                                         .opacity(0)
                                 )
+                        
                     }
                     .onDelete { indexSet in
                         listViewModel.deleteOnSwipeItems(at: indexSet, isCompletedSection: false)
@@ -55,12 +58,7 @@ struct ListView: View {
             }
         }
         .listStyle(.plain)
-        
-
-        
-        
     }
-    
 }
 
 //#Preview {

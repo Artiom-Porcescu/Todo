@@ -15,10 +15,7 @@ class ListItemViewModel: ObservableObject {
         }
     }
     
-    private var itemsUdef: [ItemModelUdef] = []
-    private var imagesFm: [UIImage?] = []
     let udefKey = "items_list"
-    
     
     init() {
         loadItems()
@@ -28,10 +25,11 @@ class ListItemViewModel: ObservableObject {
         items.append(item)
     }
     
-    func reverseDone(_for: ItemModel) {
-        if let i = items.firstIndex(where: {$0.id == _for.id}) {
-            items[i] = ItemModel(image: _for.image, title: _for.title, desc: _for.desc, date: _for.date, done: !_for.done)
+    func reverseDone(for model: ItemModel) {
+        if let index = items.firstIndex(where: {$0.id == model.id}) {
+            items[index] = ItemModel(id: items[index].id, image: model.image, title: model.title, desc: model.desc, date: model.date, done: !model.done)
         }
+        saveItems()
     }
     
     func deleteOnSwipeItems(at offsets: IndexSet, isCompletedSection: Bool) {
@@ -51,46 +49,24 @@ class ListItemViewModel: ObservableObject {
     }
     
     
-    //editItem
     func editItem(updatedItem: ItemModel) {
         if let index = items.firstIndex(where: { $0.id == updatedItem.id }) {
             items[index] = updatedItem
         }
     }
-
     
-    //save
     func saveItems() {
-        for item in items {
-            itemsUdef.append(ItemModelUdef(id: item.id, title: item.title, desc: item.desc, date: item.date, done: item.done))
-            imagesFm.append(item.image)
-        }
-        
-        //uf save
-        if let encodedData = try? JSONEncoder().encode(itemsUdef) {
+        if let encodedData = try? JSONEncoder().encode(items) {
             UserDefaults.standard.set(encodedData, forKey: udefKey)
         }
-        
-        
-        //fmsave
     }
-    
+
     func loadItems() {
-        //uf load
-//        UserDefaults.standard.removeObject(forKey: udefKey)
-        
         guard
             let data = UserDefaults.standard.data(forKey: udefKey),
-            let decodedData = try? JSONDecoder().decode([ItemModelUdef].self, from: data)
+            let decodedData = try? JSONDecoder().decode([ItemModel].self, from: data)
         else { return }
         
-        self.itemsUdef = decodedData
-        
-        var filtered: [ItemModel] = []
-        for item in itemsUdef {
-            filtered.append(ItemModel(id: item.id, image: nil, title: item.title, desc: item.desc, date: item.date, done: item.done))
-        }
-        
-        //fm load
+        self.items = decodedData
     }
 }

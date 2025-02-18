@@ -21,6 +21,7 @@ struct TodoApp: App {
             .onAppear {
                 NotificationManager.shared.requestPermission()
             }
+            .colorScheme(.light)
         }
     }
 }

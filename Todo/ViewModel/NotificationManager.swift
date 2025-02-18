@@ -38,11 +38,14 @@ class NotificationManager {
             if let error {
                 print("Ошибка при создании оповещения: \(error.localizedDescription)")
             } else {
-                // add alert later on
                 print("Назначено на \(date)")
             }
         }
         
+    }
+    
+    func cancelNotification(id: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
     }
     
 }
